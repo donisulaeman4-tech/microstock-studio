@@ -1,121 +1,403 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#10131b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Microstock Studio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10131b">
+<title>Microstock Studio Pro</title>
 <style>
-:root{--bg:#0b0e15;--panel:#151b27;--panel2:#20293a;--line:#2b3548;--text:#f4f6fb;--muted:#9ba8bd;--accent:#a99aff;--green:#75d9b0;--red:#ff8794}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:90px}header{padding:18px 17px 14px;padding-top:calc(18px + env(safe-area-inset-top));background:#121725;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#b5a5ff,#65c8ff);display:grid;place-items:center;color:#111522;font-weight:900;font-size:23px}.brand h1{font-size:19px;margin:0}.sub{font-size:10px;letter-spacing:1.1px;color:var(--muted);margin-top:3px}
-main{max-width:820px;margin:auto;padding:18px 14px}.page{display:none}.page.active{display:block}h2{font-size:25px;letter-spacing:-.7px;margin:6px 0}.lead{color:var(--muted);line-height:1.5;margin:5px 0 17px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px;margin:12px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{min-height:124px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:17px;color:var(--text);padding:14px}.tile .ico{font-size:24px;margin-bottom:12px}.tile b{display:block}.tile small{display:block;color:var(--muted);line-height:1.35;margin-top:5px}.stats{display:flex;gap:8px}.stat{flex:1;background:var(--panel2);border-radius:13px;padding:11px}.stat strong{display:block;font-size:19px}.stat span{font-size:10px;color:var(--muted)}
-label{display:block;color:#dce3f0;font-size:13px;margin:13px 0 6px}input,textarea,select{width:100%;padding:11px 12px;border-radius:11px;border:1px solid var(--line);background:#0d121c;color:var(--text);font:inherit;outline:none}textarea{min-height:85px;resize:vertical}input[type=file]{font-size:12px}input[type=range]{padding:0;accent-color:var(--accent)}button{border:0;border-radius:11px;padding:11px 14px;background:var(--accent);color:#101321;font-weight:750;font-size:13px;cursor:pointer}button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}button.green{background:var(--green)}button.danger{background:#512832;color:#ffdce0}button:disabled{opacity:.4}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1;min-width:105px}.preview{background:#f2f4f8;color:#252a33;border-radius:13px;min-height:145px;display:grid;place-items:center;overflow:auto;padding:8px}.preview img,.preview svg{max-width:100%;max-height:350px;object-fit:contain}.hint{font-size:11px;color:var(--muted);line-height:1.5}.pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:4px 8px;font-size:10px;color:var(--muted)}.good{color:var(--green)}.warn{color:#ffd18b}nav{position:fixed;bottom:0;left:0;right:0;z-index:8;display:flex;justify-content:space-around;background:#111722ed;backdrop-filter:blur(15px);border-top:1px solid var(--line);padding:7px 3px calc(7px + env(safe-area-inset-bottom))}nav button{flex:1;background:none;color:var(--muted);font-size:10px;padding:6px 2px}nav button span{display:block;font-size:18px;margin-bottom:3px}nav button.active{color:#c8bdff}hr{border:0;border-top:1px solid var(--line);margin:14px 0}.row{display:flex;gap:9px;align-items:center}.row>*{flex:1}.fileitem{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.fileitem:last-child{border:0}.tag{font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:30px;padding:3px 7px}.drop{border:1px dashed #66728a;border-radius:14px;padding:17px;text-align:center;color:var(--muted);font-size:12px}.hidden{display:none!important}
-@media(min-width:650px){main{padding:25px}.grid{grid-template-columns:repeat(4,1fr)}}
-</style></head>
+:root{--bg:#0b0e15;--panel:#151b27;--panel2:#20293a;--line:#30394c;--text:#f4f6fb;--muted:#9ba8bd;--accent:#a99aff;--green:#75d9b0;--red:#ff8794}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:90px}
+header{position:sticky;top:0;z-index:5;background:#121725;border-bottom:1px solid var(--line);padding:15px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#b5a5ff,#65c8ff);display:grid;place-items:center;color:#111;font-weight:900;font-size:22px}
+h1{font-size:18px;margin:0}.sub{font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:4px}
+main{max-width:850px;margin:auto;padding:16px}
+.page{display:none}.page.active{display:block}
+h2{font-size:25px;margin:8px 0}.lead{color:var(--muted);line-height:1.5;margin:5px 0 18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;margin:12px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:15px;color:var(--text);padding:15px;text-align:left;min-height:115px}
+.tile .ico{font-size:24px;margin-bottom:10px}.tile b{display:block}.tile small{display:block;color:var(--muted);margin-top:5px;line-height:1.4}
+.stats{display:flex;gap:8px}.stat{flex:1;background:var(--panel2);padding:12px;border-radius:12px}.stat strong{display:block;font-size:20px}.stat span{font-size:10px;color:var(--muted)}
+label{display:block;font-size:13px;margin:13px 0 6px;color:#dce3f0}
+input,textarea,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#0d121c;color:var(--text);font:inherit}
+textarea{min-height:90px;resize:vertical}
+input[type=file]{font-size:12px}
+input[type=checkbox]{width:auto}
+button{border:0;border-radius:10px;padding:11px 13px;background:var(--accent);color:#101321;font-weight:750;font-size:13px;cursor:pointer}
+button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
+button.green{background:var(--green)}button.danger{background:#512832;color:#ffdce0}
+button:disabled{opacity:.4}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.actions button{flex:1;min-width:100px}
+.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
+.hint{font-size:11px;color:var(--muted);line-height:1.5}
+.pill{display:inline-block;padding:4px 8px;background:var(--panel2);border-radius:20px;font-size:10px;color:var(--muted)}
+.preview{background:#f1f2f5;color:#222;border-radius:12px;padding:10px;min-height:130px;display:grid;place-items:center;overflow:auto}
+.preview img,.preview svg{max-width:100%;max-height:350px}
+.item{padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border:0}
+.scene{padding:12px;background:#101622;border:1px solid var(--line);border-radius:12px;margin:9px 0}
+.scene h4{margin:0 0 8px}.scene p{font-size:12px;line-height:1.5;color:var(--muted);margin:5px 0}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:8;display:flex;overflow-x:auto;background:#111722ed;border-top:1px solid var(--line);padding:7px 3px calc(7px + env(safe-area-inset-bottom))}
+nav button{flex:1;min-width:55px;background:none;color:var(--muted);font-size:10px;padding:6px 2px}
+nav button span{display:block;font-size:18px;margin-bottom:3px}
+nav button.active{color:#c8bdff}
+.good{color:var(--green)}.warn{color:#ffd18b}
+hr{border:0;border-top:1px solid var(--line);margin:15px 0}
+@media(min-width:650px){main{padding:25px}.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
 <body>
-<header><div class="brand"><div class="logo">M</div><div><h1>Microstock Studio</h1><div class="sub">CREATIVE PRODUCTION WORKSPACE · OFFLINE FIRST</div></div></div></header>
+<header>
+ <div class="brand">
+  <div class="logo">M</div>
+  <div><h1>Microstock Studio Pro</h1><div class="sub">CREATIVE PRODUCTION WORKSPACE</div></div>
+ </div>
+</header>
+
 <main>
 <section id="home" class="page active">
-<h2>Workspace kreator 👋</h2><p class="lead">Kelola vector, metadata, dan file microstock dalam satu tempat. File diproses di browser perangkatmu.</p>
-<div class="stats"><div class="stat"><strong id="countFiles">0</strong><span>FILE DIPROSES</span></div><div class="stat"><strong id="countRecords">0</strong><span>METADATA TERSIMPAN</span></div><div class="stat"><strong class="good">Lokal</strong><span>MODE PRIVASI</span></div></div>
-<h3 style="margin:22px 0 11px">Semua tools</h3><div class="grid">
-<button class="tile" onclick="go('vector')"><div class="ico">✳️</div><b>Vector Lab</b><small>Raster ke SVG berwarna</small></button>
-<button class="tile" onclick="go('metadata')"><div class="ico">🏷️</div><b>Metadata Lab</b><small>Title, description, keyword</small></button>
-<button class="tile" onclick="go('gallery')"><div class="ico">🗂️</div><b>Vector Gallery</b><small>Preview SVG, PDF, gambar</small></button>
-<button class="tile" onclick="go('batch')"><div class="ico">▦</div><b>Batch Desk</b><small>Metadata banyak file sekaligus</small></button>
-<button class="tile" onclick="go('editor')"><div class="ico">✍️</div><b>Metadata Editor</b><small>Edit, simpan, ekspor CSV/JSON</small></button>
-<button class="tile" onclick="go('guide')"><div class="ico">☑️</div><b>QC Checklist</b><small>Persiapan sebelum submit</small></button>
-</div>
-<div class="card"><b>Alur kerja yang disarankan</b><p class="hint">1. Pilih aset → 2. Vectorize bila perlu → 3. Buat metadata → 4. Cek kualitas dan lisensi → 5. Ekspor CSV/SVG dan unggah ke agensi.</p></div>
-<div class="card"><b>Catatan versi gratis</b><p class="hint">Aplikasi ini berjalan lokal tanpa akun dan tanpa server. Metadata dibuat dengan template/aturan kata, bukan AI vision. EPS tidak bisa dirender native oleh Safari; gunakan konversi EPS ke PDF/SVG melalui aplikasi lain terlebih dahulu.</p></div>
+ <h2>Workspace Kreator 👋</h2>
+ <p class="lead">Satu tempat untuk merencanakan, membuat, mengelola, dan menyiapkan aset microstock.</p>
+ <div class="stats">
+  <div class="stat"><strong id="totalProjects">0</strong><span>PROYEK</span></div>
+  <div class="stat"><strong id="totalMeta">0</strong><span>METADATA</span></div>
+  <div class="stat"><strong id="totalBatch">0</strong><span>ASET BATCH</span></div>
+ </div>
+ <h3>Semua tools</h3>
+ <div class="grid">
+  <button class="tile" onclick="go('content')"><div class="ico">🎬</div><b>Content Studio</b><small>Storyboard dan konsep visual</small></button>
+  <button class="tile" onclick="go('metadata')"><div class="ico">🏷️</div><b>Metadata Studio</b><small>Title, description, keywords</small></button>
+  <button class="tile" onclick="go('batch')"><div class="ico">▦</div><b>Batch Production</b><small>Kelola banyak aset sekaligus</small></button>
+  <button class="tile" onclick="go('vector')"><div class="ico">✳️</div><b>Vector Studio</b><small>Konversi gambar menjadi SVG</small></button>
+  <button class="tile" onclick="go('portfolio')"><div class="ico">🗂️</div><b>Portfolio</b><small>Bank proyek dan metadata</small></button>
+  <button class="tile" onclick="go('qc')"><div class="ico">☑️</div><b>Quality Control</b><small>Checklist sebelum submit</small></button>
+ </div>
+ <div class="card"><b>Alur produksi</b><p class="hint">Riset ide → storyboard → produksi aset → metadata → pemeriksaan kualitas → ekspor → unggah ke marketplace.</p></div>
+ <div class="card"><b>Mode gratis dan privasi</b><p class="hint">Data disimpan di browser perangkat ini menggunakan penyimpanan lokal. Generator metadata dan storyboard menggunakan template, bukan AI vision. Tidak ada upload otomatis ke marketplace.</p></div>
 </section>
 
-<section id="vector" class="page"><h2>Vector Lab</h2><p class="lead">Tracing gambar raster menjadi SVG berisi bidang warna. Paling cocok untuk ikon, logo, dan ilustrasi flat.</p>
-<div class="card"><label>Pilih JPG / PNG / WEBP</label><input id="vectorFile" type="file" accept="image/png,image/jpeg,image/webp">
-<div id="rasterPreview" class="preview" style="margin-top:10px">Preview sumber</div>
-<div class="row"><div><label>Ukuran tracing <span id="sizeLabel" class="pill">96 px</span></label><input id="traceSize" type="range" min="32" max="220" value="96" oninput="sizeLabel.textContent=this.value+' px'"></div><div><label>Jumlah warna <span id="colorLabel" class="pill">6</span></label><input id="colors" type="range" min="2" max="16" value="6" oninput="colorLabel.textContent=this.value"></div></div>
-<label>Mode hasil</label><select id="traceMode"><option value="flat">Warna flat (posterize)</option><option value="mono">Hitam putih</option></select>
-<div class="actions"><button onclick="traceImage()">Buat SVG</button><button id="downloadSvg" class="secondary" disabled onclick="downloadSVG()">Download SVG</button></div>
-<div id="vectorStatus" class="hint" style="margin:10px 0">Belum ada hasil.</div><div id="svgPreview" class="preview">Hasil SVG</div>
-<p class="hint">Hasil ini berbasis grid/pixel blocks yang dikemas menjadi SVG. File tetap vector, tetapi tepian bisa tampak kotak. Ini bukan auto-trace kurva profesional dan tidak cocok untuk foto kompleks atau persyaratan vector agensi yang ketat tanpa pemeriksaan manual.</p></div></section>
+<section id="content" class="page">
+ <h2>Content Studio 🎬</h2>
+ <p class="lead">Buat konsep konten dan storyboard untuk video, ilustrasi, serta aset microstock.</p>
+ <div class="card">
+  <label>Nama proyek / subjek</label>
+  <textarea id="cSubject" placeholder="Contoh: skincare serum dengan botol kaca di atas batu alam"></textarea>
+  <div class="row">
+   <div><label>Format</label><select id="cFormat"><option>Video vertikal 9:16</option><option>Video horizontal 16:9</option><option>Square 1:1</option><option>Ilustrasi microstock</option><option>Foto microstock</option></select></div>
+   <div><label>Jumlah scene</label><select id="cCount"><option>4</option><option selected>6</option><option>8</option><option>10</option></select></div>
+  </div>
+  <div class="row">
+   <div><label>Gaya visual</label><select id="cStyle"><option>Minimalist</option><option>Photorealistic</option><option>3D Render</option><option>Flat Vector</option><option>Isometric</option><option>Paper Cut</option><option>Editorial</option><option>Hand Drawn</option></select></div>
+   <div><label>Nuansa</label><select id="cMood"><option>Premium dan elegan</option><option>Ceria dan energik</option><option>Natural dan hangat</option><option>Modern futuristik</option><option>Tenang minimalis</option></select></div>
+  </div>
+  <label>Tujuan / pesan utama</label><input id="cGoal" placeholder="Contoh: menonjolkan tekstur produk">
+  <div class="actions"><button onclick="makeStory()">Buat storyboard</button><button class="secondary" onclick="clearStory()">Reset</button></div>
+ </div>
+ <div class="card">
+  <b>Hasil storyboard</b>
+  <div id="storyResult" class="hint" style="margin-top:12px">Belum ada storyboard.</div>
+  <div class="actions"><button class="green" id="storySave" disabled onclick="saveStory()">Simpan proyek</button><button class="secondary" id="storyCopy" disabled onclick="copyStory()">Salin storyboard</button></div>
+ </div>
+</section>
 
-<section id="metadata" class="page"><h2>Metadata Lab</h2><p class="lead">Buat draft metadata yang faktual. Generator lokal membantu menyusun teks dan keyword dari informasi yang kamu masukkan.</p><div class="card">
-<label>Subjek utama / deskripsi visual</label><textarea id="subject" placeholder="Contoh: red apple isolated on white background"></textarea>
-<div class="row"><div><label>Jenis aset</label><select id="assetType"><option>Illustration</option><option>Vector</option><option>Photo</option><option>Icon</option><option>Background</option><option>Pattern</option></select></div><div><label>Target</label><select id="agency"><option>Adobe Stock</option><option>Shutterstock</option><option>Freepik</option><option>Generic</option></select></div></div>
-<label>Gaya visual</label><input id="style" placeholder="flat, minimal, realistic, 3D..."><label>Warna / atribut relevan</label><input id="palette" placeholder="red, green, isolated, copy space...">
-<div class="actions"><button onclick="generateMeta()">Generate draft</button><button class="secondary" onclick="clearMeta()">Reset</button></div>
-<label>Title</label><input id="title" maxlength="180"><label>Description</label><textarea id="description"></textarea><label>Keywords (pisahkan koma)</label><textarea id="keywords"></textarea>
-<div class="actions"><button class="green" onclick="saveRecord()">Simpan record</button><button class="secondary" onclick="copyMeta()">Salin semua</button><button class="secondary" onclick="exportMetaCSV()">Ekspor CSV</button></div>
-<p class="hint">Tidak ada keyword otomatis yang dapat menjamin lolos review. Hapus kata yang tidak menggambarkan konten, hindari merek dagang, nama orang, dan keyword spam.</p></div></section>
+<section id="metadata" class="page">
+ <h2>Metadata Studio 🏷️</h2>
+ <p class="lead">Buat draft metadata yang relevan berdasarkan deskripsi aset.</p>
+ <div class="card">
+  <label>Deskripsi subjek</label><textarea id="mSubject" placeholder="Contoh: red apple isolated on white background"></textarea>
+  <div class="row">
+   <div><label>Jenis aset</label><select id="mType"><option>Photo</option><option>Vector</option><option>Illustration</option><option>Icon</option><option>Background</option><option>Pattern</option></select></div>
+   <div><label>Marketplace</label><select id="mAgency"><option>Adobe Stock</option><option>Shutterstock</option><option>Freepik</option><option>Generic</option></select></div>
+  </div>
+  <label>Gaya visual</label><input id="mStyle" placeholder="minimal, realistic, 3D, flat...">
+  <label>Warna / atribut</label><input id="mColor" placeholder="red, green, isolated, copy space...">
+  <div class="actions"><button onclick="makeMeta()">Generate metadata</button><button class="secondary" onclick="clearMeta()">Reset</button></div>
+  <hr>
+  <label>Title</label><input id="mTitle" maxlength="180">
+  <label>Description</label><textarea id="mDescription"></textarea>
+  <label>Keywords (pisahkan koma)</label><textarea id="mKeywords"></textarea>
+  <div class="actions"><button class="green" onclick="saveMeta()">Simpan metadata</button><button class="secondary" onclick="copyMeta()">Salin</button><button class="secondary" onclick="exportOneMeta()">CSV</button></div>
+ </div>
+</section>
 
-<section id="gallery" class="page"><h2>Vector Gallery</h2><p class="lead">Pratinjau file dari perangkat. File tidak dikirim ke server.</p><div class="card">
-<div class="drop">Pilih satu atau beberapa file untuk preview dan daftar file.</div><label>SVG / PDF / EPS / PNG / JPG</label><input id="galleryFiles" type="file" multiple accept=".svg,.pdf,.eps,.png,.jpg,.jpeg,.webp,image/svg+xml,application/pdf,image/png,image/jpeg">
-<div id="galleryPreview" class="preview" style="margin-top:12px">Belum ada file dipilih</div><div id="galleryInfo" class="hint" style="margin-top:9px">SVG dan gambar tampil langsung. PDF bergantung dukungan browser. EPS perlu dikonversi dahulu.</div><div id="galleryList"></div></div></section>
+<section id="batch" class="page">
+ <h2>Batch Production ▦</h2>
+ <p class="lead">Buat draft metadata untuk banyak file sekaligus.</p>
+ <div class="card">
+  <label>Pilih file aset</label><input id="batchFiles" type="file" multiple accept="image/*,.svg">
+  <label>Deskripsi umum untuk batch</label><input id="batchDesc" placeholder="Contoh: isolated on white background">
+  <label>Kategori</label><select id="batchType"><option>Photo</option><option>Illustration</option><option>Vector</option><option>Icon</option><option>Background</option><option>Pattern</option></select>
+  <div class="actions"><button onclick="buildBatch()">Buat draft</button><button class="secondary" onclick="clearBatch()">Kosongkan</button></div>
+  <div id="batchResult" class="hint" style="margin-top:12px">Belum ada file.</div>
+  <div class="actions"><button class="green" onclick="exportBatch()">Ekspor CSV</button></div>
+ </div>
+</section>
 
-<section id="batch" class="page"><h2>Batch Desk</h2><p class="lead">Buat baris metadata untuk banyak aset sekaligus, lalu ekspor satu CSV.</p><div class="card">
-<label>Pilih beberapa gambar untuk daftar batch</label><input id="batchFiles" type="file" multiple accept="image/*">
-<div id="batchList" class="hint" style="margin-top:10px">Belum ada file.</div>
-<label>Template deskripsi umum (opsional)</label><input id="batchCommon" placeholder="Contoh: isolated on white background">
-<label>Kategori umum</label><select id="batchCategory"><option>Illustration</option><option>Photo</option><option>Vector</option><option>Icon</option><option>Background</option><option>Pattern</option></select>
-<div class="actions"><button onclick="buildBatch()">Buat draft batch</button><button class="green" onclick="exportBatch()">Download batch CSV</button></div>
-<p class="hint">Batch membuat judul awal dari nama file dan template. Buka CSV di spreadsheet untuk mengedit judul, deskripsi, dan keyword per aset sebelum submit.</p></div></section>
+<section id="vector" class="page">
+ <h2>Vector Studio ✳️</h2>
+ <p class="lead">Konversi gambar raster menjadi SVG berbasis bidang warna. Periksa hasil sebelum digunakan.</p>
+ <div class="card">
+  <label>Pilih PNG / JPG / WEBP</label><input type="file" id="vFile" accept="image/png,image/jpeg,image/webp">
+  <div id="vSource" class="preview" style="margin-top:10px">Preview sumber</div>
+  <div class="row">
+   <div><label>Ukuran tracing</label><input id="vSize" type="range" min="32" max="180" value="96"></div>
+   <div><label>Jumlah warna</label><input id="vColors" type="range" min="2" max="16" value="6"></div>
+  </div>
+  <div class="actions"><button onclick="traceVector()">Buat SVG</button><button class="secondary" id="vDownload" disabled onclick="downloadSVG()">Download SVG</button></div>
+  <p id="vStatus" class="hint">Belum ada hasil.</p>
+  <div id="vResult" class="preview">Hasil SVG</div>
+  <p class="hint">Metode tracing ini memakai blok warna berbasis grid, bukan tracing kurva profesional. Tidak cocok untuk semua jenis aset.</p>
+ </div>
+</section>
 
-<section id="editor" class="page"><h2>Metadata Editor</h2><p class="lead">Edit satu record, simpan ke perangkat, dan ekspor untuk spreadsheet atau backup.</p><div class="card">
-<label>Pilih record tersimpan</label><select id="recordSelect" onchange="loadRecord()"><option value="">-- record baru --</option></select>
-<label>Nama file</label><input id="editFilename" placeholder="asset-name.svg"><label>Title</label><input id="editTitle" maxlength="180"><label>Description</label><textarea id="editDescription"></textarea><label>Keywords</label><textarea id="editKeywords"></textarea><label>Category</label><input id="editCategory" placeholder="Nature, Objects, Backgrounds...">
-<div class="actions"><button class="green" onclick="saveEditorRecord()">Simpan</button><button onclick="exportEditorCSV()">Download CSV</button><button class="secondary" onclick="exportJSON()">Download JSON</button></div>
-<div class="actions"><button class="secondary" onclick="exportAllCSV()">Ekspor semua record</button><button class="danger" onclick="deleteRecord()">Hapus record terpilih</button></div>
-</div></section>
+<section id="portfolio" class="page">
+ <h2>Portfolio & Bank Proyek 🗂️</h2>
+ <p class="lead">Semua storyboard dan metadata yang tersimpan dapat dikelola di sini.</p>
+ <div class="card">
+  <div class="row"><b>Bank storyboard</b><button class="secondary" onclick="exportStories()">Ekspor JSON</button></div>
+  <div id="storyBank" class="hint">Belum ada proyek.</div>
+ </div>
+ <div class="card">
+  <div class="row"><b>Bank metadata</b><button class="secondary" onclick="exportAllMeta()">Ekspor CSV</button></div>
+  <div id="metaBank" class="hint">Belum ada metadata.</div>
+ </div>
+ <div class="card">
+  <b>Backup seluruh data</b>
+  <p class="hint">Simpan cadangan data lokal agar tidak hilang saat browser dibersihkan.</p>
+  <div class="actions"><button class="green" onclick="backupAll()">Download backup JSON</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Pulihkan backup</button></div>
+  <input id="restoreFile" type="file" accept=".json,application/json" hidden onchange="restoreAll(event)">
+ </div>
+</section>
 
-<section id="guide" class="page"><h2>QC Checklist</h2><p class="lead">Periksa aset sebelum dikirim ke marketplace microstock.</p><div class="card" id="checks">
-<label><input type="checkbox" class="qc" style="width:auto;margin-right:8px"> Judul menjelaskan subjek secara spesifik dan akurat</label>
-<label><input type="checkbox" class="qc" style="width:auto;margin-right:8px"> Keyword relevan, tidak berulang, dan tidak spam</label>
-<label><input type="checkbox" class="qc" style="width:auto;margin-right:8px"> Tidak ada logo, merek dagang, atau karakter berhak cipta tanpa izin</label>
-<label><input type="checkbox" class="qc" style="width:auto;margin-right:8px"> Hak model/property release sudah dipenuhi bila diperlukan</label>
-<label><input type="checkbox" class="qc" style="width:auto;margin-right:8px"> Tidak ada artefak, noise, anatomi atau bentuk yang rusak</label>
-<label><input type="checkbox" class="qc" style="width:auto;margin-right:8px"> Format, ukuran, profil warna, dan transparansi sesuai panduan agensi</label>
-<label><input type="checkbox" class="qc" style="width:auto;margin-right:8px"> File vector masih bisa diedit dan elemen tidak terpotong</label>
-<hr><div id="qcProgress" class="hint">0 dari 7 selesai</div><button class="secondary" onclick="resetChecks()">Reset checklist</button></div>
-<div class="card"><b>Penting</b><p class="hint">Persyaratan teknis dan kebijakan konten berbeda di tiap agensi. Checklist ini panduan umum, bukan jaminan penerimaan atau nasihat hukum.</p></div></section>
+<section id="qc" class="page">
+ <h2>Quality Control ☑️</h2>
+ <p class="lead">Periksa aset sebelum dikirim ke marketplace.</p>
+ <div class="card">
+  <div id="qcList">
+   <label><input type="checkbox" class="qc"> Judul menjelaskan isi aset dengan akurat</label>
+   <label><input type="checkbox" class="qc"> Keyword relevan dan tidak spam</label>
+   <label><input type="checkbox" class="qc"> Tidak ada logo atau merek tanpa izin</label>
+   <label><input type="checkbox" class="qc"> Model/property release tersedia bila diperlukan</label>
+   <label><input type="checkbox" class="qc"> Tidak ada artefak atau cacat visual</label>
+   <label><input type="checkbox" class="qc"> Format dan ukuran sesuai ketentuan agensi</label>
+   <label><input type="checkbox" class="qc"> File vector bisa diedit dan tidak terpotong</label>
+   <label><input type="checkbox" class="qc"> Hak penggunaan aset sudah diperiksa</label>
+  </div>
+  <hr><b id="qcProgress">0 dari 8 selesai</b>
+  <div class="actions"><button class="secondary" onclick="resetQC()">Reset checklist</button></div>
+ </div>
+ <div class="card"><b>Catatan</b><p class="hint">Checklist ini panduan umum, bukan jaminan diterima marketplace. Periksa kebijakan dan persyaratan teknis setiap agensi.</p></div>
+</section>
 </main>
-<nav><button class="active" data-page="home" onclick="go('home')"><span>⌂</span>Home</button><button data-page="vector" onclick="go('vector')"><span>✳</span>Vector</button><button data-page="metadata" onclick="go('metadata')"><span>⌗</span>Metadata</button><button data-page="gallery" onclick="go('gallery')"><span>▧</span>Gallery</button><button data-page="batch" onclick="go('batch')"><span>▦</span>Batch</button><button data-page="editor" onclick="go('editor')"><span>✎</span>Editor</button></nav>
+
+<nav>
+ <button class="active" data-page="home" onclick="go('home')"><span>⌂</span>Home</button>
+ <button data-page="content" onclick="go('content')"><span>🎬</span>Content</button>
+ <button data-page="metadata" onclick="go('metadata')"><span>🏷️</span>Metadata</button>
+ <button data-page="batch" onclick="go('batch')"><span>▦</span>Batch</button>
+ <button data-page="vector" onclick="go('vector')"><span>✳️</span>Vector</button>
+ <button data-page="portfolio" onclick="go('portfolio')"><span>🗂️</span>Bank</button>
+ <button data-page="qc" onclick="go('qc')"><span>☑️</span>QC</button>
+</nav>
+
 <script>
-let sourceImage=null,svgResult='',batchRows=[],galleryUrls=[],records=loadRecords();
-function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0)}
-function loadRecords(){try{return JSON.parse(localStorage.getItem('ms_records')||'[]')}catch(e){return []}}
-function persist(){try{localStorage.setItem('ms_records',JSON.stringify(records))}catch(e){alert('Penyimpanan penuh. Ekspor backup JSON lalu hapus record lama.')}updateStats()}
-function updateStats(){document.getElementById('countRecords').textContent=records.length;document.getElementById('countFiles').textContent=Number(localStorage.getItem('ms_files')||0);refreshSelect()}
-function countFile(){let n=Number(localStorage.getItem('ms_files')||0)+1;localStorage.setItem('ms_files',n);updateStats()}
-function refreshSelect(){let s=document.getElementById('recordSelect');if(!s)return;let v=s.value;s.innerHTML='<option value="">-- record baru --</option>'+records.map((r,i)=>`<option value="${i}">${esc(r.filename||r.title||'Untitled '+(i+1))}</option>`).join('');s.value=v}
+const KEY='microstock_studio_pro_v1';
+let data=loadData(),currentStory=null,batchRows=[],sourceImage=null,svgOutput='';
+
+function loadData(){
+ try{return JSON.parse(localStorage.getItem(KEY))||{stories:[],metadata:[],batch:[]}}
+ catch(e){return {stories:[],metadata:[],batch:[]}}
+}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));updateUI()}
+function $(id){return document.getElementById(id)}
+function go(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ if(id==='portfolio')renderPortfolio();
+ window.scrollTo(0,0)
+}
+function updateUI(){
+ $('totalProjects').textContent=data.stories.length;
+ $('totalMeta').textContent=data.metadata.length;
+ $('totalBatch').textContent=data.batch.length;
+}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function readData(file,cb){let r=new FileReader();r.onload=()=>cb(r.result);r.readAsDataURL(file)}
-document.getElementById('vectorFile').addEventListener('change',e=>{let f=e.target.files[0];if(!f)return;readData(f,url=>{let im=new Image();im.onload=()=>{sourceImage=im;let box=document.getElementById('rasterPreview');box.innerHTML='';box.appendChild(im);im.style.maxWidth='100%';im.style.maxHeight='280px';countFile()};im.src=url})});
-function traceImage(){if(!sourceImage){alert('Pilih gambar terlebih dahulu.');return}let max=+traceSize.value,ncol=+colors.value,mode=traceMode.value,scale=Math.min(1,max/Math.max(sourceImage.width,sourceImage.height)),w=Math.max(1,Math.round(sourceImage.width*scale)),h=Math.max(1,Math.round(sourceImage.height*scale)),c=document.createElement('canvas');c.width=w;c.height=h;let ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(sourceImage,0,0,w,h);let d=ctx.getImageData(0,0,w,h).data,pix=[],hist=new Map();
-for(let i=0;i<d.length;i+=4){if(d[i+3]<60){pix.push('T');continue}let rgb;if(mode==='mono'){let v=(d[i]*.299+d[i+1]*.587+d[i+2]*.114)<128?0:255;rgb=[v,v,v]}else{rgb=[0,1,2].map(k=>Math.round(Math.round(d[i+k]/255*(ncol-1))/(ncol-1)*255))}let key=rgb.join(',');pix.push(key);hist.set(key,(hist.get(key)||0)+1)}
-let palette=[...hist].sort((a,b)=>b[1]-a[1]).slice(0,mode==='mono'?2:Math.min(48,ncol*ncol)).map(x=>x[0]);let paths='';
-for(let col of palette){let seg=[];for(let y=0;y<h;y++){let st=-1;for(let x=0;x<=w;x++){let match=x<w&&pix[y*w+x]===col;if(match&&st<0)st=x;if((!match||x===w)&&st>=0){seg.push(`M${st} ${y}h${x-st}v1h-${x-st}z`);st=-1}}}if(seg.length)paths+=`<path fill="rgb(${col})" d="${seg.join('')}"/>`}
-svgResult=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${sourceImage.width}" height="${sourceImage.height}">${paths}</svg>`;document.getElementById('svgPreview').innerHTML=svgResult;document.getElementById('downloadSvg').disabled=false;document.getElementById('vectorStatus').textContent=`Selesai · ${w} × ${h} grid · ${palette.length} warna. Periksa tepian dan detail sebelum digunakan.`}
-function download(name,data,type){let u=URL.createObjectURL(new Blob([data],{type})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1200)}
-function downloadSVG(){if(svgResult)download('microstock-vector.svg',svgResult,'image/svg+xml')}
-function generateMeta(){let s=document.getElementById("subject").value.trim();if(!s){alert('Isi deskripsi visual dulu.');return}let typ=document.getElementById("assetType").value,st=document.getElementById("style").value.trim(),pal=document.getElementById("palette").value.trim(),clean=s.replace(/[.!?]+$/,'');let t=clean.charAt(0).toUpperCase()+clean.slice(1);if(!new RegExp('\\b(vector|illustration|photo|icon|background|pattern)\\b','i').test(t))t+=' '+typ.toLowerCase();document.getElementById("title").value=t.slice(0,180);document.getElementById("description").value=`${clean}${st?', '+st+' style':''}${pal?', '+pal+' colors/attributes':''}. ${typ} for design and creative use.`;let raw=(s+' '+typ+' '+st+' '+pal).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),extra=['design','creative','graphic','visual','digital','artwork'];document.getElementById("keywords").value=[...new Set([...raw,...extra])].slice(0,49).join(', ')}
-function clearMeta(){['subject','style','palette','title','description','keywords'].forEach(id=>document.getElementById(id).value='')}
-function currentMeta(){return {filename:'',title:document.getElementById("title").value.trim(),description:document.getElementById("description").value.trim(),keywords:document.getElementById("keywords").value.trim(),category:document.getElementById("assetType").value,agency:document.getElementById("agency").value}}
-function saveRecord(){let r=currentMeta();if(!r.title){alert('Buat title terlebih dahulu.');return}records.push(r);persist();alert('Record tersimpan di perangkat.')}
-function copyMeta(){let t=`Title: ${document.getElementById("title").value}\nDescription: ${document.getElementById("description").value}\nKeywords: ${document.getElementById("keywords").value}`;if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>alert('Disalin.')).catch(()=>prompt('Salin metadata:',t));else prompt('Salin metadata:',t)}
-function csvCell(v){return '"'+String(v??'').replace(/"/g,'""')+'"'}function csv(rows){return '\ufeff'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n')}
-function exportMetaCSV(){download('microstock-metadata.csv',csv([['Title','Description','Keywords','Category','Agency'],[document.getElementById("title").value,document.getElementById("description").value,document.getElementById("keywords").value,document.getElementById("assetType").value,document.getElementById("agency").value]]),'text/csv;charset=utf-8')}
-document.getElementById('galleryFiles').addEventListener('change',e=>{let files=[...e.target.files],box=document.getElementById('galleryPreview'),list=document.getElementById('galleryList');galleryUrls.forEach(URL.revokeObjectURL);galleryUrls=[];box.textContent='Pilih file di daftar untuk preview.';list.innerHTML='';files.forEach((f,i)=>{let u=URL.createObjectURL(f);galleryUrls.push(u);let d=document.createElement('div');d.className='fileitem';d.innerHTML=`<div class="row"><div><b>${esc(f.name)}</b><div class="hint">${Math.round(f.size/1024)} KB</div></div><button class="secondary">Preview</button></div>`;d.querySelector('button').onclick=()=>previewGallery(f,u);list.appendChild(d);countFile()});if(files.length)previewGallery(files[0],galleryUrls[0])});
-function previewGallery(f,u){let box=document.getElementById('galleryPreview');box.innerHTML='';let ext=f.name.split('.').pop().toLowerCase();if(ext==='svg'){fetch(u).then(r=>r.text()).then(t=>{let clean=t.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/\son\w+="[^"]*"/gi,'');box.innerHTML=clean}).catch(()=>box.textContent='SVG tidak dapat dibaca')}else if(f.type.startsWith('image/')){let im=new Image();im.src=u;im.style.maxWidth='100%';im.style.maxHeight='340px';box.appendChild(im)}else if(ext==='pdf'||f.type==='application/pdf'){let fr=document.createElement('iframe');fr.src=u;fr.style='width:100%;height:420px;border:0';box.appendChild(fr)}else box.textContent='EPS tidak dapat dirender langsung di Safari. Konversi file EPS ke PDF/SVG terlebih dahulu.';document.getElementById("galleryInfo").textContent=`${f.name} · ${Math.round(f.size/1024)} KB · ${ext.toUpperCase()}`}
-document.getElementById('batchFiles').addEventListener('change',e=>{batchRows=[...e.target.files].map(f=>({filename:f.name,title:'',description:'',keywords:'',category:document.getElementById("batchCategory").value}));document.getElementById('batchList').textContent=`${batchRows.length} file dipilih.`;countFile()});
-function buildBatch(){if(!batchRows.length){alert('Pilih beberapa file dulu.');return}let common=document.getElementById("batchCommon").value.trim();batchRows=batchRows.map(r=>{let base=r.filename.replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim();let title=base.charAt(0).toUpperCase()+base.slice(1);return {...r,title,description:common?`${title}, ${common}.`:`${title}.`,keywords:[...new Set(base.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean).concat(['design','creative','digital']))].join(', '),category:document.getElementById("batchCategory").value}});document.getElementById("batchList").innerHTML=`<span class="good">${batchRows.length} draft dibuat.</span><br>`+batchRows.map(r=>`<div class="fileitem">${esc(r.filename)}<br><span class="hint">${esc(r.title)}</span></div>`).join('')}
-function exportBatch(){if(!batchRows.length){alert('Buat batch terlebih dahulu.');return}download('microstock-batch.csv',csv([['Filename','Title','Description','Keywords','Category'],...batchRows.map(r=>[r.filename,r.title,r.description,r.keywords,r.category])]),'text/csv;charset=utf-8')}
-function editorData(){return {filename:document.getElementById("editFilename").value,title:document.getElementById("editTitle").value,description:document.getElementById("editDescription").value,keywords:document.getElementById("editKeywords").value,category:document.getElementById("editCategory").value}}
-function loadRecord(){let i=document.getElementById("recordSelect").value;if(i==='')return;let r=records[+i];document.getElementById("editFilename").value=r.filename||'';document.getElementById("editTitle").value=r.title||'';document.getElementById("editDescription").value=r.description||'';document.getElementById("editKeywords").value=r.keywords||'';document.getElementById("editCategory").value=r.category||''}
-function saveEditorRecord(){let r=editorData();if(!r.title){alert('Title wajib diisi.');return}let i=document.getElementById("recordSelect").value;if(i==='')records.push(r);else records[+i]=r;persist();alert('Tersimpan.')}
-function exportEditorCSV(){let r=editorData();download('microstock-record.csv',csv([Object.keys(r),Object.values(r)]),'text/csv;charset=utf-8')}
-function exportJSON(){download('microstock-backup.json',JSON.stringify(records,null,2),'application/json')}
-function exportAllCSV(){if(!records.length){alert('Belum ada record.');return}let keys=['filename','title','description','keywords','category','agency'];download('microstock-all-records.csv',csv([keys, ...records.map(r=>keys.map(k=>r[k]||''))]),'text/csv;charset=utf-8')}
-function deleteRecord(){let i=document.getElementById("recordSelect").value;if(i===''){alert('Pilih record yang akan dihapus.');return}if(confirm('Hapus record ini?')){records.splice(+i,1);persist();['editFilename','editTitle','editDescription','editKeywords','editCategory'].forEach(id=>document.getElementById(id).value='')}}
-function updateQC(){let all=[...document.querySelectorAll('.qc')],n=all.filter(x=>x.checked).length;document.getElementById("qcProgress").textContent=`${n} dari ${all.length} selesai`}
-document.querySelectorAll('.qc').forEach(x=>x.addEventListener('change',updateQC));function resetChecks(){document.querySelectorAll('.qc').forEach(x=>x.checked=false);updateQC()}
-updateStats();updateQC();
-</script></body></html>
+function download(name,content,type){
+ const url=URL.createObjectURL(new Blob([content],{type}));
+ const a=document.createElement('a');a.href=url;a.download=name;a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1200)
+}
+function csv(rows){
+ return '\ufeff'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n')
+}
+
+/* CONTENT STUDIO */
+const beats=[
+ ['Hook','Tampilkan detail paling menarik dari subjek dengan framing kuat.'],
+ ['Establishing','Perlihatkan subjek dan konteks ruang dengan komposisi bersih.'],
+ ['Detail','Ambil close-up tekstur, material, atau fitur utama.'],
+ ['Demonstrasi','Tunjukkan penggunaan atau fungsi secara natural.'],
+ ['Lifestyle','Tempatkan subjek dalam situasi yang relevan.'],
+ ['Hero Shot','Tampilkan subjek secara utuh dengan pencahayaan terbaik.'],
+ ['Benefit','Visualisasikan manfaat yang benar-benar dapat dibuktikan.'],
+ ['Variation','Buat sudut kamera atau komposisi alternatif.'],
+ ['Copy Space','Sisakan ruang kosong untuk kebutuhan desain.'],
+ ['Closing','Akhiri dengan frame yang rapi dan mudah diingat.']
+];
+function makeStory(){
+ const subject=$('cSubject').value.trim();
+ if(!subject){alert('Isi subjek terlebih dahulu.');return}
+ const n=+$('cCount').value;
+ currentStory={id:Date.now(),date:new Date().toISOString(),subject,format:$('cFormat').value,style:$('cStyle').value,mood:$('cMood').value,goal:$('cGoal').value,scenes:beats.slice(0,n).map((b,i)=>({n:i+1,title:b[0],visual:b[1],camera:['Wide shot','Medium shot','Close-up','Overhead','Tracking','Static hero'][i%6]}))};
+ renderStory(currentStory);
+ $('storySave').disabled=false;$('storyCopy').disabled=false
+}
+function renderStory(s){
+ $('storyResult').innerHTML=s.scenes.map(x=>`<div class="scene"><h4>Scene ${x.n} — ${esc(x.title)}</h4><p><b>Visual:</b> ${esc(x.visual)}</p><p><b>Kamera:</b> ${esc(x.camera)}</p><p><b>Prompt dasar:</b> ${esc(s.subject)}, ${esc(x.visual)} ${esc(s.style)}, ${esc(s.mood)}, professional composition, clean lighting, no logo, no watermark.</p></div>`).join('')
+}
+function saveStory(){
+ if(!currentStory)return;
+ data.stories.unshift(currentStory);persist();alert('Storyboard tersimpan.')
+}
+function copyStory(){
+ if(!currentStory)return;
+ const txt=currentStory.subject+'\n'+currentStory.format+'\n'+currentStory.scenes.map(s=>`Scene ${s.n}: ${s.title}\n${s.visual}\nKamera: ${s.camera}`).join('\n\n');
+ copyText(txt)
+}
+function clearStory(){
+ $('cSubject').value='';$('cGoal').value='';$('storyResult').textContent='Belum ada storyboard.';
+ $('storySave').disabled=true;$('storyCopy').disabled=true;currentStory=null
+}
+
+/* METADATA */
+function makeMeta(){
+ const s=$('mSubject').value.trim();
+ if(!s){alert('Isi deskripsi visual.');return}
+ const type=$('mType').value,style=$('mStyle').value.trim(),color=$('mColor').value.trim();
+ const clean=s.replace(/[.!?]+$/,'');
+ const title=clean.charAt(0).toUpperCase()+clean.slice(1);
+ $('mTitle').value=(title+' '+type.toLowerCase()).slice(0,180);
+ $('mDescription').value=`${clean}${style?', '+style+' style':''}${color?', '+color:''}. ${type} for design and creative use.`;
+ const words=(s+' '+type+' '+style+' '+color).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+ const extras=['design','creative','graphic','visual','digital','artwork'];
+ $('mKeywords').value=[...new Set([...words,...extras])].slice(0,49).join(', ')
+}
+function clearMeta(){['mSubject','mStyle','mColor','mTitle','mDescription','mKeywords'].forEach(id=>$(id).value='')}
+function currentMeta(){return {id:Date.now(),filename:'',title:$('mTitle').value.trim(),description:$('mDescription').value.trim(),keywords:$('mKeywords').value.trim(),category:$('mType').value,agency:$('mAgency').value}}
+function saveMeta(){
+ const r=currentMeta();if(!r.title){alert('Buat title terlebih dahulu.');return}
+ data.metadata.unshift(r);persist();alert('Metadata tersimpan.')
+}
+function copyText(txt){
+ if(navigator.clipboard?.writeText)navigator.clipboard.writeText(txt).then(()=>alert('Tersalin.')).catch(()=>prompt('Salin teks:',txt));
+ else prompt('Salin teks:',txt)
+}
+function copyMeta(){copyText(`Title: ${$('mTitle').value}\nDescription: ${$('mDescription').value}\nKeywords: ${$('mKeywords').value}`)}
+function exportOneMeta(){
+ download('microstock-metadata.csv',csv([['Title','Description','Keywords','Category','Agency'],[$('mTitle').value,$('mDescription').value,$('mKeywords').value,$('mType').value,$('mAgency').value]]),'text/csv;charset=utf-8')
+}
+
+/* BATCH */
+$('batchFiles').addEventListener('change',e=>{
+ batchRows=[...e.target.files].map(f=>({filename:f.name,title:'',description:'',keywords:'',category:$('batchType').value}));
+ $('batchResult').textContent=batchRows.length+' file dipilih.'
+});
+function buildBatch(){
+ if(!batchRows.length){alert('Pilih file terlebih dahulu.');return}
+ const common=$('batchDesc').value.trim();
+ batchRows=batchRows.map(r=>{
+  const base=r.filename.replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim();
+  return {...r,title:base.charAt(0).toUpperCase()+base.slice(1),description:common?base+', '+common+'.':base+'.',keywords:[...new Set(base.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean).concat(['design','creative','digital']))].join(', '),category:$('batchType').value}
+ });
+ data.batch=batchRows;persist();
+ $('batchResult').innerHTML=batchRows.map(r=>`<div class="item"><b>${esc(r.filename)}</b><div class="hint">${esc(r.title)}</div></div>`).join('')
+}
+function exportBatch(){
+ if(!batchRows.length){alert('Belum ada batch.');return}
+ download('microstock-batch.csv',csv([['Filename','Title','Description','Keywords','Category'],...batchRows.map(r=>[r.filename,r.title,r.description,r.keywords,r.category])]),'text/csv;charset=utf-8')
+}
+function clearBatch(){batchRows=[];$('batchFiles').value='';$('batchResult').textContent='Belum ada file.'}
+
+/* VECTOR */
+$('vFile').addEventListener('change',e=>{
+ const f=e.target.files[0];if(!f)return;
+ const url=URL.createObjectURL(f);sourceImage=new Image();
+ sourceImage.onload=()=>{$('vSource').innerHTML='';sourceImage.style.maxWidth='100%';sourceImage.style.maxHeight='300px';$('vSource').appendChild(sourceImage)};
+ sourceImage.src=url
+});
+function traceVector(){
+ if(!sourceImage){alert('Pilih gambar dahulu.');return}
+ const size=+$('vSize').value,colors=+$('vColors').value;
+ const scale=Math.min(1,size/Math.max(sourceImage.width,sourceImage.height));
+ const w=Math.max(1,Math.round(sourceImage.width*scale)),h=Math.max(1,Math.round(sourceImage.height*scale));
+ const c=document.createElement('canvas');c.width=w;c.height=h;
+ const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(sourceImage,0,0,w,h);
+ const d=ctx.getImageData(0,0,w,h).data;
+ const bins=new Map(),pixels=[];
+ for(let i=0;i<d.length;i+=4){
+  const rgb=[0,1,2].map(k=>Math.round(d[i+k]/255*(colors-1))/(colors-1)*255);
+  const key=rgb.map(Math.round).join(',');
+  pixels.push(key);bins.set(key,(bins.get(key)||0)+1)
+ }
+ const palette=[...bins].sort((a,b)=>b[1]-a[1]).slice(0,Math.min(colors*colors,48)).map(x=>x[0]);
+ let paths='';
+ for(const col of palette){
+  let seg=[];
+  for(let y=0;y<h;y++){
+   let start=-1;
+   for(let x=0;x<=w;x++){
+    const match=x<w&&pixels[y*w+x]===col;
+    if(match&&start<0)start=x;
+    if((!match||x===w)&&start>=0){seg.push(`M${start} ${y}h${x-start}v1h-${x-start}z`);start=-1}
+   }
+  }
+  if(seg.length)paths+=`<path fill="rgb(${col})" d="${seg.join('')}"/>`
+ }
+ svgOutput=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}">${paths}</svg>`;
+ $('vResult').innerHTML=svgOutput;$('vDownload').disabled=false;
+ $('vStatus').textContent=`Selesai: ${w} × ${h} grid, ${palette.length} warna.`
+}
+function downloadSVG(){if(svgOutput)download('microstock-vector.svg',svgOutput,'image/svg+xml')}
+
+/* PORTFOLIO */
+function renderPortfolio(){
+ $('storyBank').innerHTML=data.stories.length?data.stories.map((s,i)=>`<div class="item"><b>${esc(s.subject)}</b><div class="hint">${esc(s.format)} · ${esc(s.style)} · ${s.scenes.length} scene</div><button class="secondary" onclick="removeStory(${i})">Hapus</button></div>`).join(''):'Belum ada proyek.';
+ $('metaBank').innerHTML=data.metadata.length?data.metadata.map((m,i)=>`<div class="item"><b>${esc(m.title)}</b><div class="hint">${esc(m.category)} · ${esc(m.agency)}</div><button class="secondary" onclick="removeMeta(${i})">Hapus</button></div>`).join(''):'Belum ada metadata.'
+}
+function removeStory(i){if(confirm('Hapus proyek ini?')){data.stories.splice(i,1);persist();renderPortfolio()}}
+function removeMeta(i){if(confirm('Hapus metadata ini?')){data.metadata.splice(i,1);persist();renderPortfolio()}}
+function exportStories(){download('microstock-storyboards.json',JSON.stringify(data.stories,null,2),'application/json')}
+function exportAllMeta(){
+ if(!data.metadata.length){alert('Belum ada metadata.');return}
+ download('microstock-all-metadata.csv',csv([['Title','Description','Keywords','Category','Agency'],...data.metadata.map(m=>[m.title,m.description,m.keywords,m.category,m.agency])]),'text/csv;charset=utf-8')
+}
+function backupAll(){download('microstock-studio-backup.json',JSON.stringify(data,null,2),'application/json')}
+function restoreAll(e){
+ const f=e.target.files[0];if(!f)return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const x=JSON.parse(reader.result);
+   if(!x||!Array.isArray(x.stories)||!Array.isArray(x.metadata)||!Array.isArray(x.batch))throw Error();
+   data=x;persist();renderPortfolio();alert('Backup berhasil dipulihkan.')
+  }catch(err){alert('File backup tidak valid.')}
+ };
+ reader.readAsText(f)
+}
+
+/* QUALITY CONTROL */
+function updateQC(){
+ const all=[...document.querySelectorAll('.qc')],n=all.filter(x=>x.checked).length;
+ $('qcProgress').textContent=`${n} dari ${all.length} selesai`
+}
+document.querySelectorAll('.qc').forEach(x=>x.addEventListener('change',updateQC));
+function resetQC(){document.querySelectorAll('.qc').forEach(x=>x.checked=false);updateQC()}
+
+updateUI();updateQC();renderPortfolio();
+</script>
+</body>
+</html>
