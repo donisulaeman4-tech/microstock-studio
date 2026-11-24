@@ -1,0 +1,9 @@
+{
+  "name": "Microstock Studio",
+  "short_name": "Microstock",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0e15",
+  "theme_color": "#10131b",
+  "description": "Creative production workspace for microstock creators"
+}
